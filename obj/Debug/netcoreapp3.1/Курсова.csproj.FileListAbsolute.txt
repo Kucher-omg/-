@@ -1,0 +1,11 @@
+D:\Курсова Кучеренко\Курсова\bin\Debug\netcoreapp3.1\Курсова.exe
+D:\Курсова Кучеренко\Курсова\bin\Debug\netcoreapp3.1\Курсова.deps.json
+D:\Курсова Кучеренко\Курсова\bin\Debug\netcoreapp3.1\Курсова.runtimeconfig.json
+D:\Курсова Кучеренко\Курсова\bin\Debug\netcoreapp3.1\Курсова.runtimeconfig.dev.json
+D:\Курсова Кучеренко\Курсова\bin\Debug\netcoreapp3.1\Курсова.dll
+D:\Курсова Кучеренко\Курсова\bin\Debug\netcoreapp3.1\Курсова.pdb
+D:\Курсова Кучеренко\Курсова\obj\Debug\netcoreapp3.1\Курсова.csprojAssemblyReference.cache
+D:\Курсова Кучеренко\Курсова\obj\Debug\netcoreapp3.1\Курсова.AssemblyInfoInputs.cache
+D:\Курсова Кучеренко\Курсова\obj\Debug\netcoreapp3.1\Курсова.AssemblyInfo.cs
+D:\Курсова Кучеренко\Курсова\obj\Debug\netcoreapp3.1\Курсова.dll
+D:\Курсова Кучеренко\Курсова\obj\Debug\netcoreapp3.1\Курсова.pdb
