@@ -623,6 +623,7 @@ namespace Курсова
                             Console.WriteLine("Your matrix is");
                             Print(array1);
                         } break;
+
                     case 8://Rang
                         {
                             int rawsAmount;
