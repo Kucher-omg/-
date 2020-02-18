@@ -24,7 +24,7 @@ namespace Курсова
         }
         static void Print ( double [,] a)
         {
-            Console.WriteLine("your matrix is");
+           // Console.WriteLine("your matrix is");
             for (int i = 0; i < a.GetLength(0); i++)
             {
                 for (int j = 0; j < a.GetLength(1); j++)
@@ -35,6 +35,53 @@ namespace Курсова
             }
         }
 
+        static double[,] Transponation (double[,] a)
+        {
+            double[,] result = new double[a.GetLength(1), a.GetLength(0)];
+
+            for (int i = 0; i < a.GetLength(1); i++)
+            {
+                for (int j = 0; j < a.GetLength(0); j++)
+                {
+                    result[i, j] = a[j, i];
+                }
+            }
+
+            return result;
+        }
+
+        private static double DetRec(double[,] matrix)
+        {
+            if (matrix.Length == 4)
+            {
+                return matrix[0, 0] * matrix[1, 1] - matrix[0, 1] * matrix[1, 0];
+            }
+            double sign = 1, result = 0;
+            for (int i = 0; i < matrix.GetLength(1); i++)
+            {
+                double[,] minor = GetMinor(matrix, i);
+                result += sign * matrix[0, i] * DetRec(minor);
+                sign = -sign;
+            }
+            return result;
+        }
+
+        private static double[,] GetMinor(double[,] matrix, int n)
+        {
+            double[,] result = new double[matrix.GetLength(0) - 1, matrix.GetLength(0) - 1];
+            for (int i = 1; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0, col = 0; j < matrix.GetLength(1); j++)
+                {
+                    if (j == n)
+                        continue;
+                    result[i - 1, col] = matrix[i, j];
+                    col++;
+                }
+            }
+            return result;
+        }
+
         static void Main(string[] args)
         {
             ConsoleKey key;
@@ -42,7 +89,7 @@ namespace Курсова
             {
                 Console.Clear();
                 Console.WriteLine("This is a calculator that performs such actions on matrix");
-                Console.Write("List:\n 1 - add and subtract matrix\n 2 - transposition of matrix\n 3 - multiplication of matrix\n 4 - rise of the matrix to the degree\n 5 - Inverted matrix\nYour answer is ");
+                Console.Write("List:\n 1 - add and subtract matrix\n 2 - transposition of matrix\n 3 - multiplication of matrix\n 4 - rise of the matrix to the degree\n 5 - Determinant of matrix\nYour answer is ");
                 int Operations;
                 while ((!int.TryParse(Console.ReadLine(), out Operations)) || Operations < 1 || Operations > 5)
                 {
@@ -155,7 +202,6 @@ namespace Курсова
                             }
 
                             double[,] array1 = new double[rawsAmount, colomsAmount];
-                            double[,] transp = new double[colomsAmount, rawsAmount];
 
                             Console.WriteLine("Enter matrix");
                             for (int i = 0; i < rawsAmount; i++)
@@ -172,13 +218,8 @@ namespace Курсова
                             
                             Console.WriteLine("Your matrix is ");
                             Print(array1);
-                            for (int i = 0; i < colomsAmount; i++)
-                            {
-                                for (int j = 0; j < rawsAmount; j++)
-                                {
-                                    transp[i, j] = array1[j, i];
-                                }
-                            }
+
+                            double[,] transp = Transponation(array1);
 
                             Console.WriteLine("Result is");
                             Print(transp);
@@ -256,8 +297,82 @@ namespace Курсова
                         } break;
 
 
-                    case 4:
+                    case 4://Degree
                         {
+                            int sizeOfMatrix;
+                            Console.Write("Enter the size of matrix -> ");
+                            while ((!int.TryParse(Console.ReadLine(), out sizeOfMatrix)) || sizeOfMatrix < 1 || sizeOfMatrix > 10)
+                            {
+                                Console.Write("Enter correct size of of raws -> ");
+
+                            }
+
+                            double[,] array1 = new double[sizeOfMatrix, sizeOfMatrix];
+
+                            Console.WriteLine("Enter the matrix");
+                            for (int i = 0; i < sizeOfMatrix; i++)
+                            {
+                                for (int j = 0; j < sizeOfMatrix; j++)
+                                {
+                                    Console.Write($"mas[{i + 1},{j + 1}] = ");
+                                    while ((!double.TryParse(Console.ReadLine(), out array1[i, j])))
+                                    {
+                                        Console.Write($"Unncorect input, mas[{i + 1},{j} + 1] = ");
+                                    }
+                                }
+                            }
+
+                            int degree;
+                            Console.Write("Enter the degree -> ");
+                            while ((!int.TryParse(Console.ReadLine(), out degree)) || degree < 2 || degree > 10)
+                            {
+                                Console.Write("Enter the degree -> ");
+
+                            }
+
+                            double[,] result = (double[,])array1.Clone();
+
+                            for (int i = 0; i < degree-1; i++)
+                            {
+                                result = Multiplication(array1, result);
+                                Console.WriteLine($"Degree is {i + 2}, Result is ");
+                                Print(result);
+                            }
+                            
+
+                        } break;
+
+                    case 5://determinant
+                        {
+
+                            int sizeOfMatrix;
+                            Console.Write("Enter the size of matrix -> ");
+                            while ((!int.TryParse(Console.ReadLine(), out sizeOfMatrix)) || sizeOfMatrix < 1 || sizeOfMatrix > 10)
+                            {
+                                Console.Write("Enter correct size of of raws -> ");
+
+                            }
+
+                            double[,] array1 = new double[sizeOfMatrix, sizeOfMatrix];
+
+                            Console.WriteLine("Enter the matrix");
+                            for (int i = 0; i < sizeOfMatrix; i++)
+                            {
+                                for (int j = 0; j < sizeOfMatrix; j++)
+                                {
+                                    Console.Write($"mas[{i + 1},{j + 1}] = ");
+                                    while ((!double.TryParse(Console.ReadLine(), out array1[i, j])))
+                                    {
+                                        Console.Write($"Unncorect input, mas[{i + 1},{j} + 1] = ");
+                                    }
+                                }
+                            }
+                            Console.WriteLine("Your matrix is");
+                            Print(array1);
+
+                            double det = DetRec(array1);
+
+                            Console.WriteLine($"Your result is {det}");
 
                         } break;
                 }
