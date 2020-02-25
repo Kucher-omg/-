@@ -3,8 +3,417 @@
 namespace Курсова
 {
     class Program
-    {
+    { 
 
+        static void AddAndSubtract ()
+        {
+            int rawsAmount;
+            Console.Write("Enter the amount of raws -> ");
+            while ((!int.TryParse(Console.ReadLine(), out rawsAmount)) || rawsAmount < 1 || rawsAmount > 10)
+            {
+                Console.Write("Enter correct amount of raws -> ");
+
+            }
+            int colomsAmount;
+            Console.Write("Enter the amount of coloms -> ");
+            while ((!int.TryParse(Console.ReadLine(), out colomsAmount)) || colomsAmount < 1 || colomsAmount > 10)
+            {
+                Console.Write("Enter correct amount of coloms -> ");
+            }
+            double[,] array1 = new double[rawsAmount, colomsAmount];
+            double[,] array2 = new double[rawsAmount, colomsAmount];
+            double[,] result = new double[rawsAmount, colomsAmount];
+            Console.WriteLine("Enter first matrix");
+            for (int i = 0; i < rawsAmount; i++)
+            {
+                for (int j = 0; j < colomsAmount; j++)
+                {
+                    Console.Write($"mas[{i + 1},{j + 1}] = ");
+                    while ((!double.TryParse(Console.ReadLine(), out array1[i, j])))
+                    {
+                        Console.Write($"Unncorect input, mas[{i + 1},{j + 1}] = ");
+                    }
+                }
+            }
+            
+            Console.WriteLine("Enter second matrix");
+            for (int i = 0; i < rawsAmount; i++)
+            {
+                for (int j = 0; j < colomsAmount; j++)
+                {
+                    Console.Write($"mas[{i + 1},{j + 1}] = ");
+                    while ((!double.TryParse(Console.ReadLine(), out array2[i, j])))
+                    {
+                        Console.Write($"Unncorect input, mas[{i + 1},{j + 1}] = ");
+                    }
+                }
+            }
+
+            Console.Write("What do you want to do\n 1 - Add or 2 - Subtract ?\nYour answer is ");
+            int AddOrSubtract;
+            while ((!int.TryParse(Console.ReadLine(), out AddOrSubtract)) || AddOrSubtract < 1 || AddOrSubtract > 2)
+            {
+                Console.Write("Inccorrect input, choose operations -> ");
+
+            }
+
+            switch (AddOrSubtract)
+            {
+                case 1:
+                    {
+                        Print(array1);
+                        Console.WriteLine("\t+");
+                        Print(array2);
+                        Console.WriteLine("\t=");
+                        for (int i = 0; i < rawsAmount; i++)
+                        {
+                            for (int j = 0; j < colomsAmount; j++)
+                            {
+                                result[i, j] = array1[i, j] + array2[i, j];
+                            }
+                        }
+                        Print(result);
+                    }
+                    break;
+
+                case 2:
+                    {
+                        Print(array1);
+                        Console.WriteLine("\t-");
+                        Print(array2);
+                        Console.WriteLine("\t=");
+                        for (int i = 0; i < rawsAmount; i++)
+                        {
+                            for (int j = 0; j < colomsAmount; j++)
+                            {
+                                result[i, j] = array1[i, j] - array2[i, j];
+                            }
+                        }
+                        Print(result);
+                    }
+                    break;
+            }
+
+           // Console.WriteLine("Result is");
+           // for (int i = 0; i < rawsAmount; i++)
+           // {
+           //     for (int j = 0; j < colomsAmount; j++)
+           //     {
+           //         Console.WriteLine($" mas[{i + 1},{j + 1}] = {result[i, j]}");
+           //    }
+           // }
+        }
+
+        static void Transponation()
+        {
+            int rawsAmount;
+            Console.Write("Enter the amount of raws -> ");
+            while ((!int.TryParse(Console.ReadLine(), out rawsAmount)) || rawsAmount < 1 || rawsAmount > 10)
+            {
+                Console.Write("Enter correct amount of raws -> ");
+
+            }
+            int colomsAmount;
+            Console.Write("Enter the amount of coloms -> ");
+            while ((!int.TryParse(Console.ReadLine(), out colomsAmount)) || colomsAmount < 1 || colomsAmount > 10)
+            {
+                Console.Write("Enter correct amount of coloms -> ");
+            }
+
+            double[,] array1 = new double[rawsAmount, colomsAmount];
+
+            Console.WriteLine("Enter matrix");
+            for (int i = 0; i < rawsAmount; i++)
+            {
+                for (int j = 0; j < colomsAmount; j++)
+                {
+                    Console.Write($"mas[{i + 1},{j + 1}] = ");
+                    while ((!double.TryParse(Console.ReadLine(), out array1[i, j])))
+                    {
+                        Console.Write($"Unncorect input, mas[{i + 1},{j + 1}] = ");
+                    }
+                }
+            }
+
+            Console.WriteLine("Your matrix is ");
+            Print(array1);
+
+            double[,] transp = Transponation(array1);
+
+            Console.WriteLine("Result is");
+            Print(transp);
+
+        }
+
+        static void Muttiplay()
+
+
+        {
+            int rawsAmount1;
+            Console.Write("Enter the amount of raws first matrix -> ");
+            while ((!int.TryParse(Console.ReadLine(), out rawsAmount1)) || rawsAmount1 < 1 || rawsAmount1 > 10)
+            {
+                Console.Write("Enter correct amount of raws -> ");
+
+            }
+            int colomsAmount1;
+            Console.Write("Enter the amount of coloms first matrix -> ");
+            while ((!int.TryParse(Console.ReadLine(), out colomsAmount1)) || colomsAmount1 < 1 || colomsAmount1 > 10)
+            {
+                Console.Write("Enter correct amount of coloms -> ");
+            }
+
+            int rawsAmount2;
+            Console.Write("Enter the amount of raws second matrix -> ");
+            while ((!int.TryParse(Console.ReadLine(), out rawsAmount2)) || rawsAmount2 < 1 || rawsAmount2 > 10)
+            {
+                Console.Write("Enter correct amount of raws second matrix-> ");
+
+            }
+            int colomsAmount2;
+            Console.Write("Enter the amount of coloms second matrix -> ");
+            while ((!int.TryParse(Console.ReadLine(), out colomsAmount2)) || colomsAmount2 < 1 || colomsAmount2 > 10)
+            {
+                Console.Write("Enter correct amount of coloms second matrix -> ");
+            }
+            if (colomsAmount1 != rawsAmount2)
+            {
+                Console.WriteLine("Can`t calculate");
+                return;
+            }
+            double[,] array1 = new double[rawsAmount1, colomsAmount1];
+            double[,] array2 = new double[rawsAmount2, colomsAmount2];
+
+            Console.WriteLine("Enter first matrix");
+            for (int i = 0; i < rawsAmount1; i++)
+            {
+                for (int j = 0; j < colomsAmount1; j++)
+                {
+                    Console.Write($"mas[{i + 1},{j + 1}] = ");
+                    while ((!double.TryParse(Console.ReadLine(), out array1[i, j])))
+                    {
+                        Console.Write($"Unncorect input, mas[{i + 1},{j + 1}] = ");
+                    }
+                }
+            }
+
+            Console.WriteLine("Enter second matrix");
+            for (int i = 0; i < rawsAmount2; i++)
+            {
+                for (int j = 0; j < colomsAmount2; j++)
+                {
+                    Console.Write($"mas[{i + 1},{j + 1}] = ");
+                    while ((!double.TryParse(Console.ReadLine(), out array2[i, j])))
+                    {
+                        Console.Write($"Unncorect input, mas[{i + 1},{j + 1}] = ");
+                    }
+                }
+            }
+
+            double[,] res = Multiplication(array1, array2);
+            Print(res);
+
+        }
+
+        static void Degree()
+        {
+             int sizeOfMatrix;
+                            Console.Write("Enter the size of matrix -> ");
+                            while ((!int.TryParse(Console.ReadLine(), out sizeOfMatrix)) || sizeOfMatrix < 1 || sizeOfMatrix > 10)
+                            {
+                                Console.Write("Enter correct size of of raws -> ");
+
+                            }
+
+                            double[,] array1 = new double[sizeOfMatrix, sizeOfMatrix];
+
+                            Console.WriteLine("Enter the matrix");
+                            for (int i = 0; i < sizeOfMatrix; i++)
+                            {
+                                for (int j = 0; j < sizeOfMatrix; j++)
+                                {
+                                    Console.Write($"mas[{i + 1},{j + 1}] = ");
+                                    while ((!double.TryParse(Console.ReadLine(), out array1[i, j])))
+                                    {
+                                        Console.Write($"Unncorect input, mas[{i + 1},{j + 1}] = ");
+                                    }
+                                }
+                            }
+
+                            int degree;
+                            Console.Write("Enter the degree -> ");
+                            while ((!int.TryParse(Console.ReadLine(), out degree)) || degree < 2 || degree > 10)
+                            {
+                                Console.Write("Enter the degree -> ");
+
+                            }
+
+                            double[,] result = (double[,])array1.Clone();
+
+                            for (int i = 0; i < degree-1; i++)
+                            {
+                                result = Multiplication(array1, result);
+                                Console.WriteLine($"Degree is {i + 2}, Result is ");
+                                Print(result);
+                            }
+                            
+        }
+
+        static void Determinant()
+        {
+            int sizeOfMatrix;
+            Console.Write("Enter the size of matrix -> ");
+            while ((!int.TryParse(Console.ReadLine(), out sizeOfMatrix)) || sizeOfMatrix < 1 || sizeOfMatrix > 10)
+            {
+                Console.Write("Enter correct size of of raws -> ");
+
+            }
+
+            double[,] array1 = new double[sizeOfMatrix, sizeOfMatrix];
+
+            Console.WriteLine("Enter the matrix");
+            for (int i = 0; i < sizeOfMatrix; i++)
+            {
+                for (int j = 0; j < sizeOfMatrix; j++)
+                {
+                    Console.Write($"mas[{i + 1},{j + 1}] = ");
+                    while ((!double.TryParse(Console.ReadLine(), out array1[i, j])))
+                    {
+                        Console.Write($"Unncorect input, mas[{i + 1},{j + 1}] = ");
+                    }
+                }
+            }
+            Console.WriteLine("Your matrix is");
+            Print(array1);
+
+            double det = DetRec(array1);
+
+            Console.WriteLine($"Your result is {det}");
+
+        }
+
+        static void Inverted()
+        {
+            int sizeOfMatrix;
+            Console.Write("Enter the size of matrix -> ");
+            while ((!int.TryParse(Console.ReadLine(), out sizeOfMatrix)) || sizeOfMatrix < 1 || sizeOfMatrix > 10)
+            {
+                Console.Write("Enter correct size of of raws -> ");
+
+            }
+
+            double[,] array1 = new double[sizeOfMatrix, sizeOfMatrix];
+
+            Console.WriteLine("Enter the matrix");
+            for (int i = 0; i < sizeOfMatrix; i++)
+            {
+                for (int j = 0; j < sizeOfMatrix; j++)
+                {
+                    Console.Write($"mas[{i + 1},{j + 1}] = ");
+                    while ((!double.TryParse(Console.ReadLine(), out array1[i, j])))
+                    {
+                        Console.Write($"Unncorect input, mas[{i + 1},{j + 1}] = ");
+                    }
+                }
+            }
+            Console.WriteLine("Your matrix is");
+            Print(array1);
+
+            double[,] result = Inverted(array1);
+            Console.WriteLine("Result is");
+            Print(result);
+        }
+
+        static void Multiplay2()
+        {
+            double n;
+            Console.Write("Enter the number -> ");
+            while ((!double.TryParse(Console.ReadLine(), out n)))
+            {
+                Console.Write("Enter correct character -> ");
+
+            }
+
+            int rawsAmount;
+            Console.Write("Enter the amount of raws -> ");
+            while ((!int.TryParse(Console.ReadLine(), out rawsAmount)) || rawsAmount < 1 || rawsAmount > 10)
+            {
+                Console.Write("Enter correct amount of raws -> ");
+
+            }
+            int colomsAmount;
+            Console.Write("Enter the amount of coloms -> ");
+            while ((!int.TryParse(Console.ReadLine(), out colomsAmount)) || colomsAmount < 1 || colomsAmount > 10)
+            {
+                Console.Write("Enter correct amount of coloms -> ");
+            }
+            double[,] array1 = new double[rawsAmount, colomsAmount];
+            Console.WriteLine("Enter first matrix");
+            for (int i = 0; i < rawsAmount; i++)
+            {
+                for (int j = 0; j < colomsAmount; j++)
+                {
+                    Console.Write($"mas[{i + 1},{j + 1}] = ");
+                    while ((!double.TryParse(Console.ReadLine(), out array1[i, j])))
+                    {
+                        Console.Write($"Unncorect input, mas[{i + 1},{j + 1}] = ");
+                    }
+                }
+            }
+            for (int i = 0; i < rawsAmount; i++)
+            {
+                for (int j = 0; j < colomsAmount; j++)
+                {
+                    array1[i, j] = n * array1[i, j];
+                }
+            }
+            Console.WriteLine("Your matrix is");
+            Print(array1);
+        }
+
+        static void Rang()
+        {
+            int rawsAmount;
+            Console.Write("Enter the amount of raws -> ");
+            while ((!int.TryParse(Console.ReadLine(), out rawsAmount)) || rawsAmount < 1 || rawsAmount > 10)
+            {
+                Console.Write("Enter correct amount of raws -> ");
+
+            }
+            int colomsAmount;
+            Console.Write("Enter the amount of coloms -> ");
+            while ((!int.TryParse(Console.ReadLine(), out colomsAmount)) || colomsAmount < 1 || colomsAmount > 10)
+            {
+                Console.Write("Enter correct amount of coloms -> ");
+            }
+
+            double[,] array1 = new double[rawsAmount, colomsAmount];
+
+            Console.WriteLine("Enter matrix");
+            for (int i = 0; i < rawsAmount; i++)
+            {
+                for (int j = 0; j < colomsAmount; j++)
+                {
+                    Console.Write($"mas[{i + 1},{j + 1}] = ");
+                    while ((!double.TryParse(Console.ReadLine(), out array1[i, j])))
+                    {
+                        Console.Write($"Unncorect input, mas[{i + 1},{j + 1}] = ");
+                    }
+                }
+            }
+
+            Console.WriteLine("Your matrix is ");
+            Print(array1);
+
+            double rang = Rank(array1);
+
+            if (rang == 0)
+            {
+                Console.WriteLine($"The rank of this matrix is 1");
+            }
+            else Console.WriteLine($"The rank of this matrix is {rang}");
+
+        }
 
         static double[,] Multiplication(double[,] a, double[,] b)
         {
@@ -26,11 +435,18 @@ namespace Курсова
         {
             for (int i = 0; i < a.GetLength(0); i++)
             {
+                Console.Write("|");
                 for (int j = 0; j < a.GetLength(1); j++)
                 {
-                    Console.Write($"{Math.Round(a[i, j],4)} ");
+                   // Console.Write($"{Math.Round(a[i, j], 4)} ");
+                   if (j != (a.GetLength(1) - 1))
+                    {
+                        Console.Write($"{Math.Round(a[i, j], 4)}\t");
+                    }
+                    else Console.Write($"{Math.Round(a[i, j], 4)}");
+
                 }
-                Console.WriteLine();
+                Console.WriteLine("|");
             }
         }
 
@@ -268,403 +684,53 @@ namespace Курсова
                 {
                     case 1://add and subtract 
                         {
-                            int rawsAmount;
-                            Console.Write("Enter the amount of raws -> ");
-                            while ((!int.TryParse(Console.ReadLine(), out rawsAmount)) || rawsAmount < 1 || rawsAmount > 10)
-                            {
-                                Console.Write("Enter correct amount of raws -> ");
-
-                            }
-                            int colomsAmount;
-                            Console.Write("Enter the amount of coloms -> ");
-                            while ((!int.TryParse(Console.ReadLine(), out colomsAmount)) || colomsAmount < 1 || colomsAmount > 10)
-                            {
-                                Console.Write("Enter correct amount of coloms -> ");
-                            }
-                            double[,] array1 = new double[rawsAmount, colomsAmount];
-                            double[,] array2 = new double[rawsAmount, colomsAmount];
-                            double[,] result = new double[rawsAmount, colomsAmount];
-                            Console.WriteLine("Enter first matrix");
-                            for (int i = 0; i < rawsAmount; i++)
-                            {
-                                for (int j = 0; j < colomsAmount; j++)
-                                {
-                                    Console.Write($"mas[{i + 1},{j + 1}] = ");
-                                    while ((!double.TryParse(Console.ReadLine(), out array1[i, j])))
-                                    {
-                                        Console.Write($"Unncorect input, mas[{i + 1},{j + 1}] = ");
-                                    }
-                                }
-                            }
-
-                            Console.WriteLine("Enter second matrix");
-                            for (int i = 0; i < rawsAmount; i++)
-                            {
-                                for (int j = 0; j < colomsAmount; j++)
-                                {
-                                    Console.Write($"mas[{i + 1},{j + 1}] = ");
-                                    while ((!double.TryParse(Console.ReadLine(), out array2[i, j])))
-                                    {
-                                        Console.Write($"Unncorect input, mas[{i + 1},{j + 1}] = ");
-                                    }
-                                }
-                            }
-
-                            Console.Write("What do you want to do\n 1 - Add or 2 - Subtract ?\nYour answer is ");
-                            int AddOrSubtract;
-                            while ((!int.TryParse(Console.ReadLine(), out AddOrSubtract)) || AddOrSubtract < 1 || AddOrSubtract > 2)
-                            {
-                                Console.Write("Inccorrect input, choose operations -> ");
-
-                            }
-
-                            switch (AddOrSubtract)
-                            {
-                                case 1:
-                                    {
-                                        for (int i = 0; i < rawsAmount; i++)
-                                        {
-                                            for (int j = 0; j < colomsAmount; j++)
-                                            {
-                                                result[i, j] = array1[i, j] + array2[i, j];
-                                            }
-                                        }
-
-                                    } break;
-
-                                case 2:
-                                    {
-                                        for (int i = 0; i < rawsAmount; i++)
-                                        {
-                                            for (int j = 0; j < colomsAmount; j++)
-                                            {
-                                                result[i, j] = array1[i, j] - array2[i, j];
-                                            }
-                                        }
-                                    } break;
-                            }
-
-                            Console.WriteLine("Result is");
-                            for (int i = 0; i < rawsAmount; i++)
-                            {
-                                for (int j = 0; j < colomsAmount; j++)
-                                {
-                                    Console.WriteLine($" mas[{i + 1},{j + 1}] = {result[i,j]}");
-                                }
-                            }
+                            AddAndSubtract();
                         } break;
                     case 2://transponation
                         {
-                            int rawsAmount;
-                            Console.Write("Enter the amount of raws -> ");
-                            while ((!int.TryParse(Console.ReadLine(), out rawsAmount)) || rawsAmount < 1 || rawsAmount > 10)
-                            {
-                                Console.Write("Enter correct amount of raws -> ");
-
-                            }
-                            int colomsAmount;
-                            Console.Write("Enter the amount of coloms -> ");
-                            while ((!int.TryParse(Console.ReadLine(), out colomsAmount)) || colomsAmount < 1 || colomsAmount > 10)
-                            {
-                                Console.Write("Enter correct amount of coloms -> ");
-                            }
-
-                            double[,] array1 = new double[rawsAmount, colomsAmount];
-
-                            Console.WriteLine("Enter matrix");
-                            for (int i = 0; i < rawsAmount; i++)
-                            {
-                                for (int j = 0; j < colomsAmount; j++)
-                                {
-                                    Console.Write($"mas[{i + 1},{j + 1}] = ");
-                                    while ((!double.TryParse(Console.ReadLine(), out array1[i, j])))
-                                    {
-                                        Console.Write($"Unncorect input, mas[{i + 1},{j + 1}] = ");
-                                    }
-                                }
-                            }
-                            
-                            Console.WriteLine("Your matrix is ");
-                            Print(array1);
-
-                            double[,] transp = Transponation(array1);
-
-                            Console.WriteLine("Result is");
-                            Print(transp);
-
+                            Transponation();
 
                         } break;
 
                     case 3://muttiplay
                         {
 
-                            int rawsAmount1;
-                            Console.Write("Enter the amount of raws first matrix -> ");
-                            while ((!int.TryParse(Console.ReadLine(), out rawsAmount1)) || rawsAmount1 < 1 || rawsAmount1 > 10)
-                            {
-                                Console.Write("Enter correct amount of raws -> ");
-
-                            }
-                            int colomsAmount1;
-                            Console.Write("Enter the amount of coloms first matrix -> ");
-                            while ((!int.TryParse(Console.ReadLine(), out colomsAmount1)) || colomsAmount1 < 1 || colomsAmount1 > 10)
-                            {
-                                Console.Write("Enter correct amount of coloms -> ");
-                            }
-
-                            int rawsAmount2;
-                            Console.Write("Enter the amount of raws second matrix -> ");
-                            while ((!int.TryParse(Console.ReadLine(), out rawsAmount2)) || rawsAmount2 < 1 || rawsAmount2 > 10)
-                            {
-                                Console.Write("Enter correct amount of raws second matrix-> ");
-
-                            }
-                            int colomsAmount2;
-                            Console.Write("Enter the amount of coloms second matrix -> ");
-                            while ((!int.TryParse(Console.ReadLine(), out colomsAmount2)) || colomsAmount2 < 1 || colomsAmount2 > 10)
-                            {
-                                Console.Write("Enter correct amount of coloms second matrix -> ");
-                            }
-                            if ( colomsAmount1 != rawsAmount2)
-                            {
-                                Console.WriteLine("Can`t calculate");
-                                break;
-                            }
-                            double[,] array1 = new double[rawsAmount1, colomsAmount1];
-                            double[,] array2 = new double[rawsAmount2, colomsAmount2];
+                            Muttiplay();
                             
-                            Console.WriteLine("Enter first matrix");
-                            for (int i = 0; i < rawsAmount1; i++)
-                            {
-                                for (int j = 0; j < colomsAmount1; j++)
-                                {
-                                    Console.Write($"mas[{i + 1},{j + 1}] = ");
-                                    while ((!double.TryParse(Console.ReadLine(), out array1[i, j])))
-                                    {
-                                        Console.Write($"Unncorect input, mas[{i + 1},{j + 1}] = ");
-                                    }
-                                }
-                            }
-
-                            Console.WriteLine("Enter second matrix");
-                            for (int i = 0; i < rawsAmount2; i++)
-                            {
-                                for (int j = 0; j < colomsAmount2; j++)
-                                {
-                                    Console.Write($"mas[{i + 1},{j + 1}] = ");
-                                    while ((!double.TryParse(Console.ReadLine(), out array2[i, j])))
-                                    {
-                                        Console.Write($"Unncorect input, mas[{i + 1},{j + 1}] = ");
-                                    }
-                                }
-                            }
-
-                            double[,] res = Multiplication(array1, array2);
-                            Print(res);
-
                         } break;
 
                     case 4://Degree
                         {
-                            int sizeOfMatrix;
-                            Console.Write("Enter the size of matrix -> ");
-                            while ((!int.TryParse(Console.ReadLine(), out sizeOfMatrix)) || sizeOfMatrix < 1 || sizeOfMatrix > 10)
-                            {
-                                Console.Write("Enter correct size of of raws -> ");
 
-                            }
-
-                            double[,] array1 = new double[sizeOfMatrix, sizeOfMatrix];
-
-                            Console.WriteLine("Enter the matrix");
-                            for (int i = 0; i < sizeOfMatrix; i++)
-                            {
-                                for (int j = 0; j < sizeOfMatrix; j++)
-                                {
-                                    Console.Write($"mas[{i + 1},{j + 1}] = ");
-                                    while ((!double.TryParse(Console.ReadLine(), out array1[i, j])))
-                                    {
-                                        Console.Write($"Unncorect input, mas[{i + 1},{j + 1}] = ");
-                                    }
-                                }
-                            }
-
-                            int degree;
-                            Console.Write("Enter the degree -> ");
-                            while ((!int.TryParse(Console.ReadLine(), out degree)) || degree < 2 || degree > 10)
-                            {
-                                Console.Write("Enter the degree -> ");
-
-                            }
-
-                            double[,] result = (double[,])array1.Clone();
-
-                            for (int i = 0; i < degree-1; i++)
-                            {
-                                result = Multiplication(array1, result);
-                                Console.WriteLine($"Degree is {i + 2}, Result is ");
-                                Print(result);
-                            }
-                            
+                            Degree();
 
                         } break;
 
                     case 5://determinant
                         {
 
-                            int sizeOfMatrix;
-                            Console.Write("Enter the size of matrix -> ");
-                            while ((!int.TryParse(Console.ReadLine(), out sizeOfMatrix)) || sizeOfMatrix < 1 || sizeOfMatrix > 10)
-                            {
-                                Console.Write("Enter correct size of of raws -> ");
-
-                            }
-
-                            double[,] array1 = new double[sizeOfMatrix, sizeOfMatrix];
-
-                            Console.WriteLine("Enter the matrix");
-                            for (int i = 0; i < sizeOfMatrix; i++)
-                            {
-                                for (int j = 0; j < sizeOfMatrix; j++)
-                                {
-                                    Console.Write($"mas[{i + 1},{j + 1}] = ");
-                                    while ((!double.TryParse(Console.ReadLine(), out array1[i, j])))
-                                    {
-                                        Console.Write($"Unncorect input, mas[{i + 1},{j + 1}] = ");
-                                    }
-                                }
-                            }
-                            Console.WriteLine("Your matrix is");
-                            Print(array1);
-
-                            double det = DetRec(array1);
-
-                            Console.WriteLine($"Your result is {det}");
+                            Determinant();
 
                         } break;
 
                     case 6://Inverted
                         {
 
-                            int sizeOfMatrix;
-                            Console.Write("Enter the size of matrix -> ");
-                            while ((!int.TryParse(Console.ReadLine(), out sizeOfMatrix)) || sizeOfMatrix < 1 || sizeOfMatrix > 10)
-                            {
-                                Console.Write("Enter correct size of of raws -> ");
-
-                            }
-
-                            double[,] array1 = new double[sizeOfMatrix, sizeOfMatrix];
-
-                            Console.WriteLine("Enter the matrix");
-                            for (int i = 0; i < sizeOfMatrix; i++)
-                            {
-                                for (int j = 0; j < sizeOfMatrix; j++)
-                                {
-                                    Console.Write($"mas[{i + 1},{j + 1}] = ");
-                                    while ((!double.TryParse(Console.ReadLine(), out array1[i, j])))
-                                    {
-                                        Console.Write($"Unncorect input, mas[{i + 1},{j + 1}] = ");
-                                    }
-                                }
-                            }
-                            Console.WriteLine("Your matrix is");
-                            Print(array1);
-
-                            double[,] result = Inverted(array1);
-                            Console.WriteLine("Result is");
-                            Print(result);
+                            Inverted();
 
                         } break;
 
                     case 7://Multiplay2
                         {
-                            double n;
-                            Console.Write("Enter the number -> ");
-                            while ((!double.TryParse(Console.ReadLine(), out n)) )
-                            {
-                                Console.Write("Enter correct character -> ");
 
-                            }
+                            Multiplay2();
 
-                            int rawsAmount;
-                            Console.Write("Enter the amount of raws -> ");
-                            while ((!int.TryParse(Console.ReadLine(), out rawsAmount)) || rawsAmount < 1 || rawsAmount > 10)
-                            {
-                                Console.Write("Enter correct amount of raws -> ");
-
-                            }
-                            int colomsAmount;
-                            Console.Write("Enter the amount of coloms -> ");
-                            while ((!int.TryParse(Console.ReadLine(), out colomsAmount)) || colomsAmount < 1 || colomsAmount > 10)
-                            {
-                                Console.Write("Enter correct amount of coloms -> ");
-                            }
-                            double[,] array1 = new double[rawsAmount, colomsAmount];
-                            Console.WriteLine("Enter first matrix");
-                            for (int i = 0; i < rawsAmount; i++)
-                            {
-                                for (int j = 0; j < colomsAmount; j++)
-                                {
-                                    Console.Write($"mas[{i + 1},{j + 1}] = ");
-                                    while ((!double.TryParse(Console.ReadLine(), out array1[i, j])))
-                                    {
-                                        Console.Write($"Unncorect input, mas[{i + 1},{j + 1}] = ");
-                                    }
-                                }
-                            }
-                            for (int i = 0; i < rawsAmount; i++)
-                            {
-                                for (int j = 0; j < colomsAmount; j++)
-                                {
-                                    array1[i, j] = n * array1[i, j];
-                                }
-                            }
-                            Console.WriteLine("Your matrix is");
-                            Print(array1);
                         } break;
 
                     case 8://Rang
                         {
-                            int rawsAmount;
-                            Console.Write("Enter the amount of raws -> ");
-                            while ((!int.TryParse(Console.ReadLine(), out rawsAmount)) || rawsAmount < 1 || rawsAmount > 10)
-                            {
-                                Console.Write("Enter correct amount of raws -> ");
 
-                            }
-                            int colomsAmount;
-                            Console.Write("Enter the amount of coloms -> ");
-                            while ((!int.TryParse(Console.ReadLine(), out colomsAmount)) || colomsAmount < 1 || colomsAmount > 10)
-                            {
-                                Console.Write("Enter correct amount of coloms -> ");
-                            }
-
-                            double[,] array1 = new double[rawsAmount, colomsAmount];
-
-                            Console.WriteLine("Enter matrix");
-                            for (int i = 0; i < rawsAmount; i++)
-                            {
-                                for (int j = 0; j < colomsAmount; j++)
-                                {
-                                    Console.Write($"mas[{i + 1},{j + 1}] = ");
-                                    while ((!double.TryParse(Console.ReadLine(), out array1[i, j])))
-                                    {
-                                        Console.Write($"Unncorect input, mas[{i + 1},{j + 1}] = ");
-                                    }
-                                }
-                            }
-
-                            Console.WriteLine("Your matrix is ");
-                            Print(array1);
-
-                            double rang = Rank(array1);
-
-                            if (rang == 0)
-                            {
-                                Console.WriteLine($"The rank of this matrix is 1");
-                            }
-                            else Console.WriteLine($"The rank of this matrix is {rang}");
+                            Rang();
 
                         } break;
                 }
